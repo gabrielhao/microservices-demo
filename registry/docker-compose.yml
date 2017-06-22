@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  store:
+    image:  progrium/consul:latest
+    command: "-server -bootstrap -ui-dir /ui"
+    name: consul
+    ports:
+      - "8500:8500"
+      - "8400:8400"
+      - "8600:53/udp"
+
+  registrator:
+    image: gliderlabs/registrator:latest
+    command: "-ip localhost consul://localhost:8500"
+    name: registrator
+    network_mode: "host"
+    depends_on:
+      - store
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+
