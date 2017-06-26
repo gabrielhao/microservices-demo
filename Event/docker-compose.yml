@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: eventdb
+      MYSQL_USER: event
+      MYSQL_PASSWORD: admin
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
