@@ -4,17 +4,18 @@ services:
 
   store:
     image:  progrium/consul:latest
-    command: "-server -bootstrap -ui-dir /ui"
-    name: consul
+    command: "-server -bootstrap -ui-dir /ui -recursor=192.168.2.1"
+    container_name: consul
     ports:
       - "8500:8500"
       - "8400:8400"
-      - "8600:53/udp"
+      - "53:53/udp"
+     
 
   registrator:
     image: gliderlabs/registrator:latest
     command: "-ip localhost consul://localhost:8500"
-    name: registrator
+    container_name: registrator
     network_mode: "host"
     depends_on:
       - store
