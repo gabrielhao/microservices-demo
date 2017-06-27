@@ -8,27 +8,52 @@ services:
       - "5000:5000"
     volumes:
       - .:/code
-    dns: localhost
+    dns: 172.17.0.1
     dns_search: service.consul
+    network_mode: "bridge"
+    links:
+      - db
+    depends_on:
+      - db
+    restart: always
+#    networks:
+#      - registry_registry_network
     environment:
       SERVICE_5000_NAME: eventtitle
 
   db:
     image: mysql
-    dns: localhost
+    container_name: db
+    dns: 172.17.0.1
     dns_search: service.consul
+    network_mode: "bridge"
+    depends_on:
+      - adminer
+    ports:
+      - "3306:3306"
+#    networks:
+#      - registry_registry_network
     environment:
-      SERVICE_NAME: db
-      MYSQL_ROOT_PASSWORD: example
+      SERVICE_3306_NAME: db
+      MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: eventdb
       MYSQL_USER: event
       MYSQL_PASSWORD: admin
 
   adminer:
     image: adminer
-    dns: localhost
+    dns: 172.17.0.1
     dns_search: service.consul
+    network_mode: "bridge"
+#    networks:
+#      - registry_registry_network
     environment:
       SERVICE_8080_NAME: adminer
     ports:
       - "8080:8080"
+
+#networks:
+#  registry_registry_network:
+#    external: true
+
+

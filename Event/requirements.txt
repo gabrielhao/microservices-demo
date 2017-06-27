@@ -5,3 +5,4 @@ Jinja2==2.9.4
 requests==2.12.4
 SQLAlchemy==1.1.5
 kafka-python==1.3.3
+mysql-python==1.2.5

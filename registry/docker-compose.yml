@@ -6,6 +6,8 @@ services:
     image:  progrium/consul:latest
     command: "-server -bootstrap -ui-dir /ui -recursor=192.168.2.1"
     container_name: consul
+    networks:
+      - registry_network
     ports:
       - "8500:8500"
       - "8400:8400"
@@ -14,11 +16,18 @@ services:
 
   registrator:
     image: gliderlabs/registrator:latest
-    command: "-ip localhost consul://localhost:8500"
+    command: "-ip 172.17.0.1 consul://store:8500"
     container_name: registrator
-    network_mode: "host"
+    networks:
+      - registry_network
+    links:
+      - store
     depends_on:
       - store
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
+networks:
+  registry_network:
+      driver: bridge
+
 
