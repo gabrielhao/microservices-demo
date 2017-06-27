@@ -8,6 +8,8 @@ services:
     ports:
       - "2181:2181"
       - "9092:9092"
+    dns: localhost
+    dns_search: service.consul
     environment:
       - ADVERTISED_HOST=localhost
       - ADVERTISED_PORT=9092
