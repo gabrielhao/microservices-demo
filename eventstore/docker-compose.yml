@@ -4,11 +4,14 @@ services:
 
   kafka:
     image: spotify/kafka:latest
-    name: kafka
+    container_name: kafka
     ports:
       - "2181:2181"
       - "9092:9092"
+    dns: localhost
+    dns_search: service.consul
     environment:
       - ADVERTISED_HOST=localhost
       - ADVERTISED_PORT=9092
+      - SERVICE_9092_NAME=eventstore
       

@@ -8,10 +8,17 @@ services:
       - "5000:5000"
     volumes:
       - .:/code
+    dns: localhost
+    dns_search: service.consul
+    environment:
+      SERVICE_5000_NAME: eventtitle
 
   db:
     image: mysql
+    dns: localhost
+    dns_search: service.consul
     environment:
+      SERVICE_NAME: db
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: eventdb
       MYSQL_USER: event
@@ -19,5 +26,9 @@ services:
 
   adminer:
     image: adminer
+    dns: localhost
+    dns_search: service.consul
+    environment:
+      SERVICE_8080_NAME: adminer
     ports:
       - "8080:8080"
