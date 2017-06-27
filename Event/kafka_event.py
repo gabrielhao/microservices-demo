@@ -2,7 +2,7 @@ from kafka import KafkaProducer
 
 
 
-producer = KafkaProducer(bootstrap_servers=['kafka.service.consul:9092'])
+producer = KafkaProducer(bootstrap_servers=['eventstore.service.consul:9092'])
 topic = 'event-title-delete'
 
 
