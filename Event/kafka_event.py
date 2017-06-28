@@ -8,8 +8,9 @@ topic = 'event-title-delete'
 #producer.send(topic, b"test")
 
 class EventStore(object):
-    def delete(self, event):
-        producer.send(topic, event.id)
+    @staticmethod
+    def delete(event):
+        producer.send(topic, bytes(event.id))
 
 
 

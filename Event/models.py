@@ -7,7 +7,7 @@ class EventItem(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(50))
 
-    def __init__(self, title=None):
+    def __init__(self, title):
         self.title = title
 
     def __repr__(self):
