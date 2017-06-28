@@ -33,7 +33,9 @@ class EventContent(Resource):
         args = parser.parse_args()
         content = args["eventcontent"]
         event_id = args["eventid"]
-        ContentItem.query.filter_by(event_id=event_id).update(desc=content)
+        item=ContentItem.query.filter_by(event_id=event_id).first()
+        item.desc = content
+        session.commit()
         return content
 
     @staticmethod
