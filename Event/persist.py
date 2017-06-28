@@ -3,7 +3,7 @@ from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('mysql://root:admin@db.service.consul:3306/eventdb', echo=False, pool_recycle=3600)
+engine = create_engine('mysql://root:admin@eventdb.service.consul:3306/eventdb', echo=False, pool_recycle=3600)
 
 Base = declarative_base()
 Session = sessionmaker(bind=engine)

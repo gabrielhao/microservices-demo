@@ -26,8 +26,8 @@ services:
     dns: 172.17.0.1
     dns_search: service.consul
     network_mode: "bridge"
-#    ports:
-#      - "3306:3306"
+    ports:
+      - "3307:3306"
 #    networks:
 #      - registry_registry_network
     environment:
