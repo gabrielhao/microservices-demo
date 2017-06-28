@@ -1,5 +1,5 @@
 from kafka import KafkaConsumer
-from EventContent import EventContent
+from Content import EventContent
 
 
 
