@@ -1,6 +1,6 @@
 Flask==0.12
 Flask-Cors==3.0.2
-flask-restul==0.3.6
+Flask-RESTful==0.3.6
 Jinja2==2.9.4
 requests==2.12.4
 SQLAlchemy==1.1.5
