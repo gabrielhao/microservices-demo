@@ -1,15 +1,13 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from persist import Base
 
 class ContentItem(Base):
     __tablename__ = 'ContentItem'
     id = Column(Integer, primary_key=True)
     event_id = Column(Integer)
-    desc = Column(String(50))
+    desc = Column(String(100))
 
-    def __init__(self, event_id=None, desc=None):
+    def __init__(self, event_id, desc):
         self.event_id = event_id
         self.desc = desc
 
