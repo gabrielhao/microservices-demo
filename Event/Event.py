@@ -22,7 +22,7 @@ class Event(Resource):
 
     def post(self):
         args = parser.parse_args()
-        event = {"event": args["event"]}
+        event = args["event"]
         item = EventItem(title=event)
         session.add(event)
         session.flush()
@@ -30,7 +30,7 @@ class Event(Resource):
 
     def put(self, event_id):
         args = parser.parse_args()
-        event = {"event", args["event"]}
+        event = args["event"]
         EventItem.query.filter(id=event_id).update(title=event)
 
         return event
