@@ -12,12 +12,12 @@ parser = reqparse.RequestParser()
 
 class Event(Resource):
     #get last event
-    def get(self):
-        event = EventItem.query.first()
-        return event.title
+    def get(self, event_id=None):
+        if event_id is not None:
+            event = EventItem.query.filter(id=event_id)
+        else:
+            event = EventItem.query.first()
 
-    def get(self, event_id):
-        event = EventItem.query.filter(id=event_id)
         return event.title
 
     def post(self):
@@ -25,7 +25,6 @@ class Event(Resource):
         event = {"event": args["event"]}
         session.add(event)
         session.flush()
-
         return event.id, 201
 
     def put(self, event_id):
