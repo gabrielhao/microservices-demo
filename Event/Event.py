@@ -16,7 +16,7 @@ class Event(Resource):
         if event_id is not None:
             event = EventItem.query.filter(id=event_id)
         else:
-            event = EventItem.query.first()
+            event = EventItem.query.fist()
 
         return event.title
 

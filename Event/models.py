@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+from persist import Base
 
-Base = declarative_base()
 
 class EventItem(Base):
     __tablename__ = 'EventItem'
