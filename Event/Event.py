@@ -9,6 +9,7 @@ from persist import session, init_db
 app = Flask(__name__)
 api = Api(app)
 parser = reqparse.RequestParser()
+parser.add_argument('event')
 
 class Event(Resource):
     #get last event
@@ -22,7 +23,7 @@ class Event(Resource):
 
     def post(self):
         args = parser.parse_args()
-        event = args["event"]
+        event = args['event']
         item = EventItem(title=event)
         session.add(event)
         session.flush()
@@ -30,7 +31,7 @@ class Event(Resource):
 
     def put(self, event_id):
         args = parser.parse_args()
-        event = args["event"]
+        event = args['event']
         EventItem.query.filter(id=event_id).update(title=event)
 
         return event
