@@ -48,4 +48,4 @@ api.add_resource(EventContent, '/api/v1.0/eventcontents')
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
