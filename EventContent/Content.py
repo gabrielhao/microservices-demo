@@ -12,7 +12,9 @@ parser = reqparse.RequestParser()
 
 class EventContent(Resource):
 
-    def get(self, event_id):
+    def get(self):
+        args = parser.parse_args()
+        event_id = int({"event_id": args["eventid"]})
         content = ContentItem.query.filter(event_id=event_id)
         return content.desc
 
