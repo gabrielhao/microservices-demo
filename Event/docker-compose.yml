@@ -23,18 +23,15 @@ services:
 
   db:
     image: mysql
-    container_name: db
     dns: 172.17.0.1
     dns_search: service.consul
     network_mode: "bridge"
-    depends_on:
-      - adminer
     ports:
       - "3306:3306"
 #    networks:
 #      - registry_registry_network
     environment:
-      SERVICE_3306_NAME: db
+      SERVICE_3306_NAME: eventdb
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: eventdb
       MYSQL_USER: event
@@ -52,8 +49,8 @@ services:
     ports:
       - "8080:8080"
 
+
+
 #networks:
 #  registry_registry_network:
 #    external: true
-
-
