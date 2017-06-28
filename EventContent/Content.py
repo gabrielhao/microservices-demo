@@ -1,7 +1,5 @@
 from flask import Flask
 from flask_restful import reqparse, Api, Resource
-
-from kafka_event import EventStore
 from models import ContentItem
 from persist import session, init_db
 
