@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    dns: 172.17.0.1
+    dns_search: service.consul
+    network_mode: "bridge"
+    links:
+      - db
+    depends_on:
+      - db
+    restart: always
+#    networks:
+#      - registry_registry_network
+    environment:
+      SERVICE_5000_NAME: eventcontent
+
+  db:
+    image: mysql
+    dns: 172.17.0.1
+    dns_search: service.consul
+    network_mode: "bridge"
+    ports:
+      - "3306:3306"
+#    networks:
+#      - registry_registry_network
+    environment:
+      SERVICE_3306_NAME: contentdb
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: contentdb
+      MYSQL_USER: event
+      MYSQL_PASSWORD: admin
+
+
+#networks:
+#  registry_registry_network:
+#    external: true
