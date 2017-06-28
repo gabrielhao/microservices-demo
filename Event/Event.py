@@ -16,13 +16,14 @@ class Event(Resource):
         if event_id is not None:
             event = EventItem.query.filter(id=event_id)
         else:
-            event = EventItem.query.fist()
+            event = EventItem.query.first()
 
         return event.title
 
     def post(self):
         args = parser.parse_args()
         event = {"event": args["event"]}
+        item = EventItem(title=event)
         session.add(event)
         session.flush()
         return event.id, 201
