@@ -1,10 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+var path = require("path")
 
 const app = express()
 
 app.get('/', function (req, res) {
-  res.sendFile('index.html');
+  res.sendFile(path.join(__dirname+'/views/index.html'));
   //res.send('Hello World!')
 })
 
@@ -20,6 +20,6 @@ app.get('/add', function (req, res) {
   res.sendFile('edit.html');
 })
 
-app.listen(80, function () {
-  console.log('Example app listening on port 80!')
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
 })
