@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  ui:
+    build: .
+    ports:
+      - "3000:3000"
+    dns: 172.17.0.1
+    dns_search: service.consul
+    network_mode: "bridge"
+    restart: always
+#    networks:
+#      - registry_registry_network
+    environment:
+      SERVICE_3000_NAME: desktop-ui
